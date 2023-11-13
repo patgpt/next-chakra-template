@@ -2,61 +2,61 @@ import React, { ReactNode } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 
+// Add Chakra UI
+import { 
+  Box, 
+  Heading, 
+  Text,
+  Button,
+  useColorModeValue  
+} from '@chakra-ui/react';
+
 type Props = {
   children?: ReactNode;
   title?: string;
 };
 
-const Layout = ({ children, title = 'Chakra Template' }: Props) => (
-  <div>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </Head>
-    <header>
-      <nav>
-        <Link href="/">Home</Link> | <Link href="/about">About</Link> |{' '}
-        <Link href="/users">Users List</Link> |{' '}
-        <a href="/api/users">Users API</a>
-      </nav>
-    </header>
-    <main>
+const Layout = ({ children, title = 'Home' }: Props) => {
+
+  return (
+    <div>
+      <Head>
+        <title>{title}</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      
+      {/* Header */}
+      <Box as="header" bg={useColorModeValue('teal.500', 'teal.200')} p={4}>
+        <nav>
+          <Link href="/">Home</Link>
+          {/* other links */}
+        </nav>
+      </Box>
+
+      {/* Hero section */}
       <section className="hero">
-        <div className="hero-content">
-          <h1>{title}</h1>
-          <p>Your catchphrase or a brief description goes here.</p>
-          {/* Add any other elements like buttons or links */}
-        </div>
+        <Box maxW="container" mx="auto" textAlign="center" pt={16} pb={8}>
+          <Heading as="h1">{title}</Heading>
+          <Text mt={4}>Your catchphrase or brief description</Text>
+          <Button colorScheme="teal" size="lg" mt={8}>
+            Get Started
+          </Button>
+        </Box>
       </section>
-      <section className="main-content">
+
+      {/* Main content */}
+      <Box maxW="container" mx="auto" px={5} py={8}>
         {children}
-        {/* Add additional content specific to the landing page */}
-      </section>
-    </main>
-    <footer>
-      <hr />
-      <span>I'm here to stay (Footer)</span>
-    </footer>
+      </Box>
 
-    <style jsx>{`
-      .hero {
-        background: url('/hero-background.jpg') center/cover;
-        color: #fff;
-        text-align: center;
-        padding: 100px 0;
-      }
+      {/* Footer */}
+      <Box as="footer" bg={useColorModeValue('gray.100', 'gray.900')} py={8}>
+        <Text textAlign="center">Footer Content</Text>
+      </Box>
 
-      .hero-content {
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      .main-content {
-        padding: 20px;
-      }
-    `}</style>
-  </div>
-);
+    </div>
+  );
+}
 
 export default Layout;
