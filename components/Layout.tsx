@@ -1,23 +1,23 @@
-import React, { ReactNode } from 'react';
-import Link from 'next/link';
-import Head from 'next/head';
+import React, { ReactNode } from "react";
+import Link from "next/link";
+import Head from "next/head";
 
 // Add Chakra UI
-import { 
-  Box, 
-  Heading, 
+import {
+  Box,
+  Heading,
   Text,
   Button,
-  useColorModeValue  
-} from '@chakra-ui/react';
+  useColorModeValue,
+} from "@chakra-ui/react";
+import ThemeToggle from "./theme-toggle";
 
 type Props = {
   children?: ReactNode;
   title?: string;
 };
 
-const Layout = ({ children, title = 'Home' }: Props) => {
-
+const Layout = ({ children, title = "Home" }: Props) => {
   return (
     <div>
       <Head>
@@ -25,13 +25,14 @@ const Layout = ({ children, title = 'Home' }: Props) => {
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      
+
       {/* Header */}
-      <Box as="header" bg={useColorModeValue('teal.500', 'teal.200')} p={4}>
+      <Box as="header" bg={useColorModeValue("teal.500", "teal.200")} p={4}>
         <nav>
           <Link href="/">Home</Link>
           {/* other links */}
         </nav>
+        <ThemeToggle />
       </Box>
 
       {/* Hero section */}
@@ -51,12 +52,11 @@ const Layout = ({ children, title = 'Home' }: Props) => {
       </Box>
 
       {/* Footer */}
-      <Box as="footer" bg={useColorModeValue('gray.100', 'gray.900')} py={8}>
+      <Box as="footer" bg={useColorModeValue("gray.100", "gray.900")} py={8}>
         <Text textAlign="center">Footer Content</Text>
       </Box>
-
     </div>
   );
-}
+};
 
 export default Layout;
